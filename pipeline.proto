@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+import "dataset.proto";
+
+enum Status {
+    PENDING = 0;
+    RUNNING = 1;
+    COMPLETED = 2;
+}
+
+
+message Pipeline {
+    optional Status add_data = 1 [default = PENDING];
+    optional Status lock_data = 2 [default = PENDING];
+    optional Status set_algo = 3 [default = PENDING];
+    optional Status train = 4 [default = PENDING];
+
+    optional dataset_version_meta dataset_version_info = 5;
+    optional dataset_meta dataset_meta_info = 6;
+    optional tfrecord_meta tfrecord_meta_info = 7;
+}
