@@ -1,6 +1,7 @@
 syntax = "proto2";
 
 import "dataset.proto";
+import "algos.proto";
 
 enum Status {
     PENDING = 0;
@@ -10,6 +11,9 @@ enum Status {
 
 
 message Pipeline {
+
+    extensions 9 to 20;
+
     optional Status add_data = 1 [default = PENDING];
     optional Status lock_data = 2 [default = PENDING];
     optional Status set_algo = 3 [default = PENDING];
@@ -18,4 +22,20 @@ message Pipeline {
     optional dataset_version_meta dataset_version_info = 5;
     optional dataset_meta dataset_meta_info = 6;
     optional tfrecord_meta tfrecord_meta_info = 7;
+}
+
+
+message ObjectDetectionPipeline {
+
+    extend Pipeline {
+        //input data format
+        optional ObjectDetectionDataFormat input_format = 9;
+
+        //algorithm
+        optional ObjectDetection algorithm = 10;
+
+        //feature extractor
+        optional Classification feature_extractor = 11;        
+    }
+
 }

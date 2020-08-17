@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+
+enum ObjectDetection {
+	YOLOV3 = 0;
+	RETINANET = 1;
+}
+
+enum Classification {
+	VGG16 = 0;
+	VGG19 = 1;
+	RESNET50 = 2;
+	RESNET50V2 = 3;
+	RESNET101 = 4;
+	RESNET101V2 = 5;
+	RESNET152 = 6;
+	RESNET152V2 = 7;
+	MOBILENET = 8;
+	MOBILENETV2 = 9;
+	XCEPTION = 10;
+}

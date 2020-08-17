@@ -1,0 +1,36 @@
+syntax = "proto2";
+
+import "dataset.proto";
+
+
+message LogTfrecordsVersion {
+
+    // user token for validation
+    optional string token = 1;
+
+    // ID of the associated experiment.
+    optional string experiment_id = 2 ;
+
+    optional tfrecord_meta metainfo = 3;
+
+    optional string version = 4;
+
+    message Response {
+        optional string response = 1;
+        optional int32 response_code = 2;
+    }
+}
+
+message GetTfrecordsVersion {
+    // user token for validation
+    optional string token = 1;
+
+    // ID of the associated experiment.
+    optional string experiment_id = 2 ;
+
+    message Response {
+
+        // All tfrecord metainfos associated with experiment_id
+        repeated tfrecord_meta metainfo = 1;
+    }    
+}
