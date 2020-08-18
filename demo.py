@@ -9,7 +9,7 @@ from dataset_pb2 import DatasetMeta
 pipeline = Pipeline()
 
 #add data
-# dataset_meta = ObjectDetectionDatasetMeta()
+pipeline.add_data = Status.RUNNING
 dataset_meta = DatasetMeta()
 
 dataset_meta.task_type = TaskType.OBJECT_DETECTION
@@ -19,14 +19,14 @@ dataset_meta.test_set_size = 500
 dataset_meta.num_classes = 5
 dataset_meta.version = 0
 
-pipeline.add_data = Status.RUNNING
 #assign dataset_meta
 pipeline.dataset_meta_info.CopyFrom(dataset_meta)
+pipeline.add_data = Status.COMPLETED
 
 #version data
 
 #lock_data
-
+pipeline.lock_data = Status.RUNNING
 tfrecord_meta = TfrecordMeta()
 
 _NUM_SHARDS = 4
@@ -39,6 +39,7 @@ for i in range(_NUM_SHARDS):
 
 #assign tfrecord_meta
 pipeline.tfrecord_meta_info.CopyFrom(tfrecord_meta)
+pipeline.lock_data = Status.COMPLETED
 
 print(pipeline)
 
