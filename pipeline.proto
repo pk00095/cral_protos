@@ -12,30 +12,20 @@ enum Status {
 
 message Pipeline {
 
-    extensions 9 to 20;
-
     optional Status add_data = 1 [default = PENDING];
     optional Status lock_data = 2 [default = PENDING];
     optional Status set_algo = 3 [default = PENDING];
     optional Status train = 4 [default = PENDING];
 
-    optional dataset_version_meta dataset_version_info = 5;
-    optional dataset_meta dataset_meta_info = 6;
-    optional tfrecord_meta tfrecord_meta_info = 7;
-}
+    optional DatasetVersionMeta dataset_version_info = 5;
+    optional DatasetMeta dataset_meta_info = 6;
+    optional TfrecordMeta tfrecord_meta_info = 7;
 
+    optional FeatureExtractor feature_extractor = 11;
 
-message ObjectDetectionPipeline {
-
-    extend Pipeline {
-        //input data format
-        optional ObjectDetectionDataFormat input_format = 9;
-
-        //algorithm
-        optional ObjectDetection algorithm = 10;
-
-        //feature extractor
-        optional Classification feature_extractor = 11;        
+    oneof algorithm {
+        Classification classification = 12;
+        ObjectDetection object_detection = 13;
     }
-
 }
+

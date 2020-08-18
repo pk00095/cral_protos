@@ -19,19 +19,29 @@ enum SemanticSegmentationDataFormat {
 	RGB = 1;
 }
 
+enum ClassificationDataFormat {
+    FOLDER = 0;
+}
+
 
 /*use this for pipe.add_data*/
-message dataset_meta {
+message DatasetMeta {
     required TaskType task_type = 1;
-    required string input_format = 2;
-    required int32 train_set_size = 3;
-    required int32 test_set_size = 4;
-    optional int32 num_classes = 5;
-    required int32 version = 6;
+
+    required int32 train_set_size = 2;
+    required int32 test_set_size = 3;
+    optional int32 num_classes = 4;
+    required int32 version = 5;
+
+    oneof input_format {
+        ClassificationDataFormat classification = 6;
+        ObjectDetectionDataFormat object_detection = 7;
+        SemanticSegmentationDataFormat semantic_segmentation = 8;
+    } 
 }
 
 /*use this for pipe.add_data*/
-message dataset_version_meta {
+message DatasetVersionMeta {
     required HashEntry train_set_hash = 1;
     required HashEntry test_set_hash = 2;
     required int32 train_set_version = 3;
@@ -39,7 +49,7 @@ message dataset_version_meta {
 }
 
 /*use this for pipe.lock_data*/
-message tfrecord_meta {
+message TfrecordMeta {
     required int32 num_shards = 1;
     repeated HashEntry train_set = 2;
     repeated HashEntry test_set = 3;

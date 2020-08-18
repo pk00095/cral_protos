@@ -11,7 +11,7 @@ message LogTfrecordsVersion {
     // ID of the associated experiment.
     optional string experiment_id = 2 ;
 
-    optional tfrecord_meta metainfo = 3;
+    optional TfrecordMeta metainfo = 3;
 
     optional string version = 4;
 
@@ -31,6 +31,6 @@ message GetTfrecordsVersion {
     message Response {
 
         // All tfrecord metainfos associated with experiment_id
-        repeated tfrecord_meta metainfo = 1;
+        repeated TfrecordMeta metainfo = 1;
     }    
 }

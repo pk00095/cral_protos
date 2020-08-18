@@ -7,6 +7,10 @@ enum ObjectDetection {
 }
 
 enum Classification {
+	MLP = 0;
+	NONE = 1;
+}
+enum FeatureExtractor {
 	VGG16 = 0;
 	VGG19 = 1;
 	RESNET50 = 2;
