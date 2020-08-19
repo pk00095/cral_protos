@@ -1,9 +1,9 @@
 import pdb 
-from pipeline_pb2 import Status, Pipeline
+from protos.pipeline_pb2 import Status, Pipeline
 
-from dataset_pb2 import DatasetVersionMeta, TfrecordMeta, TaskType
-from dataset_pb2 import ObjectDetectionDataFormat
-from dataset_pb2 import DatasetMeta, HashEntry
+from protos.dataset_pb2 import DatasetVersionMeta, TfrecordMeta, TaskType
+from protos.dataset_pb2 import ObjectDetectionDataFormat
+from protos.dataset_pb2 import DatasetMeta, HashEntry
 
 
 pipeline = Pipeline()
